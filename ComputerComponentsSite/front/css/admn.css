@@ -1,0 +1,161 @@
+@import 'global.css';
+#cntHdr {
+    background-color: rgb(0, 14, 20);
+    width: 100%;
+    padding: 5px;
+    font-weight: bold;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#cntHdrBts {
+    display: flex;
+    flex-direction: row;
+}
+#dbs {
+    display: flex;
+    flex-direction: column;
+}
+#dbVw {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    border: 1px solid grey;
+}
+#dbCts {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(0, 14, 20);
+}
+#dbCts button {
+    width: 10vh;
+    font-size: medium;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+#dbLs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#dbItm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid slategrey;
+}
+.dbRw {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.dbRw span {
+    margin: 5px;
+    word-wrap: anywhere;
+}
+#dbItm1Id { width: 3%; }
+#dbItm1Tp { width: 5%; }
+#dbItm1Nm {
+    width: 35%;
+    text-justify: inter-word;
+    text-align: justify;
+}
+#dbItm1Ds {
+    width: 45%;
+    text-justify: inter-word;
+    text-align: justify;
+}
+#dbItm1Cs { width: 6%; }
+#dbItm1Im { width: 6%; }
+#dbItm2Id { width: 33%; }
+#dbItm2Lg { width: 33%; }
+#dbItm2Ps { width: 33%; }
+#dbItm > span {
+    margin: 5px;
+    overflow-wrap: anywhere;
+    text-align: justify;
+    text-justify: inter-word;
+}
+#cntFtr {
+    background-color: rgb(0, 14, 20);
+    width: 100%;
+}
+#act {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #202324;
+    width: 100vh;
+    justify-content: space-between;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 20px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#actHdr {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(0, 14, 20);
+    font-weight: bold;
+    font-size: large;
+    padding: 5px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+#actMn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#actMn > input, #actMn > textarea {
+    width: 75%;
+    margin: 5px;
+    font-size: large;
+}
+#actFtr {
+    background-color: rgb(0, 14, 20);
+    width: 100%;
+    text-align: right;
+}
+@media only screen and (max-width: 950px) {
+    .dbRw {
+        flex-direction: column;
+    }
+    .dbItmFrs > .dbRw {
+        display: none;
+    }
+    #dbRw1 > span {
+        width: auto;
+    }
+    #dbRw2 > span {
+        width: auto;
+    }
+    #dbCts {
+        width: 10%;
+    }
+    #dbCts > button {
+        width: auto;
+        font-size: smaller;
+    }
+    .dbRw {
+        width: 90%;
+    }
+    #dbItm {
+        font-size: smaller;
+    }
+    #cntHdr {
+        font-size: medium;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #act {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+}
