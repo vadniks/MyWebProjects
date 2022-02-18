@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="a" type="email">
+    <input id="b" type="password">
+    <button id="c">Authorise (or Authenticate, which is wright?)</button>
+    <script>
+        const a = document.getElementById('a'),
+              b = document.getElementById('b'),
+              c = document.getElementById('c')
+
+        c.addEventListener('click', () => {
+            const d = b.value.length
+            if (d < 8 || d > 16) {
+                b.style.backgroundColor = 'red'
+                b.value = ''
+                setTimeout(() => b.style.backgroundColor = 'initial', 2000)
+            }
+        })
+    </script>
+</body>
+</html>

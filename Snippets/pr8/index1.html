@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        button {
+            display: inline-block;
+            font-size: x-large;
+            border: 2px solid red;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button:hover {
+            border: 2px solid blue;
+        }
+        #bt1 {
+            transition: box-shadow 1s ease-in-out, color 1s ease-in-out;
+        }
+        #bt1:hover {
+            box-shadow: 0 0 40px 40px grey inset;
+        }
+        #bt2 {
+            transition: all .5s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            background-image: linear-gradient(135deg, transparent 10%, transparent 25%, grey 60%, transparent 60%);
+            /*background-image: linear-gradient(135deg, transparent 25%, grey 25%, grey 75%, transparent 75%);*/
+            background-position: 100%;
+            background-size: 600%;
+        }
+        #bt2:hover {
+            background-position: 0;
+        }
+        #bt3dv {
+            position: relative;
+            width: 103px;
+            height: 40px;
+            margin: auto;
+        }
+        #bt3 {
+            top: 0;
+            left: 0;
+            position: absolute;
+            border-radius: 0;
+            width: 103px;
+            height: 40px;
+            cursor: pointer;
+            transition: border 700ms ease-in-out;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+        #bt3t {
+            z-index: 1;
+            top: 10px;
+            left: 0;
+            width: 103px;
+            position: absolute;
+            display: inline-block;
+        }
+        svg {
+            z-index: 2;
+            top: 0;
+            left: 0;
+            position: absolute;
+            display: inline-block;
+            fill: none;
+            stroke: #fff;
+            stroke-dasharray: 150 480;
+            stroke-dashoffset: 150;
+            transition: 700ms ease-in-out;
+        }
+        svg:hover {
+            stroke-dashoffset: -480;
+        }
+        polyline {
+            stroke-width: 4px;
+        }
+        #bt4 {
+            box-sizing: border-box;
+            z-index: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        #bt4::after {
+            position: absolute;
+            content: "";
+            z-index: -1;
+            display: block;
+            background: yellow;
+            transition: all 300ms ease;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            transform: scale(0, 0);
+        }
+        #bt4:hover::after {
+            transition: all 300ms ease-out;
+            transform: scale(1, 1);
+        }
+        #bt5 {
+            opacity: 1;
+            position: relative;
+            border: none;
+        }
+        #bt5::after {
+            top: 0;
+            left: 5%;
+            opacity: 0;
+            transition: 1s;
+            position: absolute;
+            content: "Button5";
+            transform: translateY(-50%) rotateX(90deg);
+            display: inline-block;
+            border: 2px solid blue;
+            border-radius: 5px;
+            font-size: x-large;
+            padding: 2px;
+            align-self: center;
+        }
+        #bt5::before {
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: 1s;
+            display: inline-block;
+            position: relative;
+            content: "Button5";
+            transform: translateY(0) rotateX(0);
+            border: 2px solid red;
+            border-radius: 5px;
+            font-size: x-large;
+            padding: 2px;
+            align-self: center;
+        }
+        #bt5:hover::after {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+        #bt5:hover::before {
+            opacity: 0;
+            transform: translateY(50%) rotateX(90deg);
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            let a = document.getElementsByTagName('svg')[0],
+                b = document.getElementById('bt3')
+            a.addEventListener('mouseenter', () => b.style.border = '2px solid blue')
+            a.addEventListener('mouseleave', () => b.style.border = '2px solid red')
+        }
+    </script>
+</head>
+<body>
+    <button id="bt1">Button1</button><br>
+    <button id="bt2">Button2</button><br>
+
+    <div id="bt3dv">
+        <svg width="103px" height="40px" viewBox="0 0 103 40">
+            <polyline points="103,0 103,40 0,40 0,0 103,0"/>
+        </svg>
+        <span id="bt3t">Button3</span>
+        <button id="bt3"></button>
+    </div>
+
+    <button id="bt4">Button4</button><br>
+    <button id="bt5"></button>
+</body>
+</html>

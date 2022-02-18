@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1></h1>
+    <input>
+    <button>Start</button>
+    <script>
+        const $0x1 = document.getElementsByTagName('body')[0].querySelectorAll('*'),
+              $0x2 = $0x1[0],
+              $0x3 = $0x1[1],
+              $0x4 = $0x1[2]
+        let $0x11 = undefined
+
+        $0x4.addEventListener('click', () => {
+            const
+                $0x6 = new Date(),
+                $0x7 = $0x3.value
+
+            $0x6.setHours($0x6.getHours() + parseInt($0x7.substr(0, 2)))
+            $0x6.setMinutes($0x6.getMinutes() + parseInt($0x7.substr(3, 2)))
+
+            clearInterval($0x11)
+            $0x11 = setInterval(() => {
+                let $0x5 = new Date()
+                const
+                    $0x8 = new Date($0x6.getTime() - $0x5.getTime() +
+                        new Date().getTimezoneOffset() * 60 * 1000),
+                    $0x9 = $0x8.getHours(),
+                    $0x10 = $0x8.getMinutes(),
+                    $0x12 = $0x8.getSeconds()
+
+                $0x2.textContent = $0x9 + ' : ' + $0x10 + ' : ' + $0x12
+
+                if ($0x9 === 0 && $0x10 === 0 && $0x12 === 0) {
+                    clearInterval($0x11)
+                    $0x2.textContent = 'Countdown is over'
+                }
+            }, 1000)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #hdr {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            border-bottom: 2px solid grey;
+            text-align: center;
+            background-color: lightcoral;
+        }
+        #main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0;
+        }
+        #clm {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 32%;
+            margin: 0;
+        }
+        #elm {
+            display: inline-block;
+            width: 100%;
+            height: 250px;
+            border: 2px solid darkcyan;
+            margin: 3px;
+        }
+        @media (max-width: 900px) {
+            #clm {
+                width: 49%;
+            }
+        }
+        @media (max-width: 600px) {
+            #clm {
+                width: 99%;
+            }
+        }
+    </style>
+    <script>
+        const cms = 3;
+        const sz = 10;
+        const crs = ["grey", "red", "blue", "yellow", "green", "orange"]
+        let clms = [], elms = []
+
+        let mn
+        let clm
+        let elm
+
+        function rnd(mx) { let _a = Math.floor(Math.random() * mx + 1); return _a === mx + 1 ? 0 : _a; }
+
+        let rsz = function () {
+            let a = clms[2].style
+            let b = clms[1].style
+            let d = window.innerWidth
+
+            if (d <= 900) {
+                if (csd1 == null) csd1 = a.display
+                a.display = "none"
+            } else
+                a.display = csd1
+
+            if (d <= 600) {
+                if (csd2 == null) csd2 = b.display
+                b.display = "none"
+            } else
+                b.display = csd2
+        }
+
+        window.onload = function () {
+            mn = document.getElementById("main")
+            clm = document.getElementById("clm")
+            elm = document.getElementById("elm")
+
+            mn.style.paddingTop = document.getElementById("hdr").offsetHeight.toString() + "px"
+
+            let a = `${clm.style.display}`
+            clm.style.display = "none"
+            let b = `${elm.style.display}`
+            elm.style.display = "none"
+            for (let i = 0; i < 3; i++) {
+                let cl = clm.cloneNode(true)
+
+                for (let j = 0; j < sz + (i === 1 ? 1 : 0); j++) {
+                    let el = elm.cloneNode(true)
+                    el.style.backgroundColor = crs[rnd(crs.length - 1)]
+                    el.style.display = b
+
+                    if (i === 1 && (j === 0 || j === sz))
+                        el.style.height = "125px"
+
+                    cl.append(el)
+                    elms.push(el)
+                }
+                cl.style.display = a
+                mn.append(cl)
+                clms.push(cl)
+            }
+
+            rsz()
+        }
+        let csd1 = null
+        let csd2 = null
+        window.onresize = rsz
+    </script>
+</head>
+<body>
+    <div id="hdr">
+        <h1>Header</h1>
+    </div>
+    <div id="main">
+        <div id="clm">
+            <div id="elm"></div>
+        </div>
+    </div>
+</body>
+</html>

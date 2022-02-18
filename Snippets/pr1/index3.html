@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title3</title>
+    <style>
+        .swt {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .swt input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slr {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: whitesmoke;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        .slr:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        input:checked + .slr {
+            background-color: gray;
+        }
+        input:focus + .slider {
+            box-shadow: 0 0 1px darkgray;
+        }
+        input:checked + .slr:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; font-size: large; background-color: chocolate">
+        <label>Register</label><br>
+
+        <textarea id="txnm" rows="1" cols="10" placeholder="Name"></textarea><br>
+        <textarea id="txph" rows="1" cols="10" placeholder="Phone"></textarea><br>
+        <textarea id="txem" rows="1" cols="10" placeholder="Email"></textarea><br>
+        <input type="password" id="txps" rows="1" cols="10" placeholder="Password"/><br>
+
+        <button type="button" class="clps">Collapsible list</button>
+        <div class="lst" style="display: none; overflow: hidden">
+            <ol>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+                <li>Item 5</li>
+            </ol>
+        </div>
+        <script type="text/javascript">
+            var coll = document.getElementsByClassName("clps");
+
+            for (let i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+
+                    var cnt = this.nextElementSibling;
+                    if (cnt.style.display === "block")
+                        cnt.style.display = "none";
+                    else
+                        cnt.style.display = "block";
+                })
+            }
+        </script>
+        <br>
+
+        <label for="swtch">Switcher</label>
+        <label id="swtch" class="swt" title="Switch">
+            <input type="checkbox">
+            <span class="slr"></span>
+        </label><br>
+
+        <iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br>
+
+        <audio controls>
+            <source src="" type="audio/mpeg">
+        </audio><br>
+
+        <iframe width="400" height="250" src="index.html"></iframe><br>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module" src="glb.js"></script>
+    <style>
+        progress::-moz-progress-bar {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center">
+        <p>
+            <a href="#nch_1">First paragraph</a><br>
+            <a href="#nch_2">Second paragraph</a><br>
+            <a href="../pr1/index.html">Another page</a><br>
+            <a href="https://google.com">+1234567890</a>
+        </p>
+        <a href="i1_ifrm_cnt1.html">
+            <img src="../res/Wallpaper-ST2-Blue.jpg" alt="Another page" width="200px" height="150px">
+        </a><br>
+        <a id="nch_1">
+            <iframe id="hdr" src="i1_ifrm_hdr.html" width="150px" height="90px"></iframe>
+            <br>
+            <iframe id="mnu" src="i1_ifrm_mnu.html" width="150px" height="110px"></iframe>
+            <br>
+            <iframe id="cnt1" src="i1_ifrm_cnt1.html" width="500px" height="400px"></iframe>
+        </a>
+        <a id="nch_2">
+            <p>Paragraph 2</p>
+        </a>
+        <a id="nch_3">
+            <p>Paragraph 3</p>
+        </a>
+        <p>
+            <a href="wood.html#ahdr">Wood</a><br>
+            <a href="bird.html#ahdr">Bird</a><br>
+            <a href="face.html#ahdr">Face</a>
+        </p>
+        <p>
+            <img 
+                src="../res/usermap.png"
+                usemap="#map"
+                alt="Usermap">
+            <map name="map">
+                <area
+                    shape="poly"
+                    coords="74,0,113,29,98,72,52,72,38,27"
+                    href="../pr1/index.html"
+                    alt="Another page"
+                    target="_blank">
+                <area
+                    shape="rect"
+                    coords="22,83,126,125"
+                    alt="Another page"
+                    href="../pr1/index.html"
+                    target="_blank">
+                <area
+                    shape="circle"
+                    coords="73,168,32"
+                    alt="Another page"
+                    href="../pr1/index.html"
+                    target="_blank">
+            </map>
+        </p>
+        <p>
+            <label for="prg">0.1 of 1</label>
+            <progress id="prg" value="0.1" max="1">10%</progress>
+            <br>
+            <label for="mtr">0.1 of 1</label>
+            <meter id="mtr" value="0.1">10%</meter>
+        </p>
+        <br>
+        <canvas id="cnv" width="500px" height="300px" style="border:1px solid chocolate"></canvas>
+        <script>
+            let c = document.getElementById("cnv").getContext("2d")
+
+            c.beginPath()
+            c.arc(125, 150, 60, 0, 2 * 3.14)
+            c.closePath()
+            c.stroke()
+
+            c.beginPath()
+            c.arc(125, 150, 30, 0, 2 * Math.PI)
+            c.closePath()
+            c.stroke()
+            c.fill()
+
+            c.beginPath()
+            c.rect(187, 100, 125, 100)
+            c.closePath()
+            c.stroke()
+
+            c.beginPath()
+            c.rect(212, 125, 75, 50)
+            c.closePath()
+            c.stroke()
+            c.fill()
+
+            c.beginPath()
+            c.moveTo(315, 90)
+            c.lineTo(485, 90)
+            c.lineTo(400, 210)
+            c.lineTo(325, 100)
+            c.closePath()
+            c.stroke()
+
+            c.beginPath()
+            c.moveTo(345, 110)
+            c.lineTo(455, 110)
+            c.lineTo(400, 180)
+            c.lineTo(345, 110)
+            c.closePath()
+            c.stroke()
+            c.fill()
+        </script>
+    </div>
+</body>
+</html>

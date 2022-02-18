@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #lst {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: scroll;
+            height: 50%;
+            border: 2px solid grey;
+        }
+        #tsk {
+            background: darkslategrey;
+            margin: 1px;
+        }
+    </style>
+    <script>
+        let clc, lst, fld, dd, rm, tks = [], ln = 1
+
+        function bt(a) {
+            if (fld.value.length === 0 || !a && tks.findIndex(b => b.textContent === fld.value) >= 0) {
+                fld.style.border = '2px solid red'
+                setTimeout(() => fld.style.border = '', 1000)
+                return
+            }
+
+            if (!a) {
+                let b = ln > 1 ? tks[0].cloneNode(true) : tks[0]
+                b.textContent = fld.value
+
+                if (ln > 1) {
+                    lst.append(b)
+                    tks.push(b)
+                }
+                ln++
+            } else {
+                let b = tks.findIndex(c => c.textContent === fld.value)
+
+                if (b < 0) {
+                    fld.style.border = '2px solid red'
+                    setTimeout(() => fld.style.border = '', 1000)
+                    return
+                }
+
+                tks[b].remove()
+                tks.splice(b, 1)
+                ln--
+            }
+            fld.value = ''
+        }
+
+        window.onload = () => {
+            clc = document.getElementById('clc')
+            lst = document.getElementById('lst')
+            fld = document.getElementById('fld')
+            dd = document.getElementById('dd')
+            rm = document.getElementById('rm')
+
+            tks.push(document.getElementById('tsk'))
+
+            dd.addEventListener('click', () => bt(false))
+            rm.addEventListener('click', () => bt(true))
+
+            fld.addEventListener('keyup', e => {
+                if (e.key === 'Enter') {
+                    e.preventDefault()
+
+                    if (!e.shiftKey) dd.click()
+                    else rm.click()
+                }
+            })
+
+            setInterval(() => {
+                let a = new Date(),
+                    b = a.getHours(),
+                    c = b > 12
+                clc.textContent = (b > 12 ? b - 12 : b) + ':' + a.getMinutes() + ':' + a.getSeconds() + ' ' + (c ? 'PM' : 'AM')
+            }, 1000)
+        }
+    </script>
+</head>
+<body>
+    <h1 id="clc"></h1>
+    <hr>
+    <div id="lst">
+        <span id="tsk">Empty</span>
+    </div>
+    <label for="fld">Task name</label>
+    <textarea id="fld"></textarea>
+    <button id="dd">Add task</button>
+    <button id="rm">Remove task</button>
+</body>
+</html>

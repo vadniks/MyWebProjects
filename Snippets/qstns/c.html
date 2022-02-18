@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <img id="img" src="../res/illyria-default-lockscreen.jpg" alt=""/>
+    <script>
+        const img = document.getElementById('img'), c = 3
+        let flag = 1
+        img.addEventListener('click', () => {
+            if (flag > 0 && flag < c)
+                flag++
+            else if (flag < 0 && flag > -c)
+                flag--
+            else if (flag === c)
+                flag = -1
+            else
+                flag = 1
+
+            img.style.width = img.style.height = `${flag * 10 + img.clientWidth}px`
+        })
+    </script>
+</body>
+</html>

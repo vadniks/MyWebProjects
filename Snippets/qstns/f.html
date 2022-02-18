@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #a {
+            width: 100px;
+            height: 100px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"></div>
+    <script>
+        const clrs = [
+            null, // noinspect
+            "grey",
+            "red",
+            "blue",
+            "yellow",
+            "green",
+            "orange"
+        ],
+              a = document.getElementById('a')
+
+        a.addEventListener('click', () =>
+            a.style.backgroundColor =
+                clrs[Math.floor(Math.random() * 6)]
+        )
+    </script>
+</body>
+</html>

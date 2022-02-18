@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button>Min</button>
+    <button>Max</button>
+    <progress value="0" max="100"></progress>
+    <script>
+        const _a = document.querySelectorAll('body > *'),
+            a = _a[0], b = _a[1], c = _a[2]
+
+        function a_(b_) {
+            const d = c.getAttributeNode('value')
+            d.value = b_.toString()
+            c.setAttributeNode(d)
+        }
+
+        function b_(b_) {
+            if (e === (b_ ? 100 : 0)) { clearInterval(f); return }
+            b_ ? e += 10 : e -= 10
+            console.log(e)
+            a_(e)
+        }
+
+        function c_(_a_) {
+            clearInterval(f)
+            f = setInterval(() => b_(_a_), 100)
+        }
+
+        var e = 0, f
+        a.addEventListener('click', () => c_(false))
+        b.addEventListener('click', () => c_(true))
+    </script>
+</body>
+</html>

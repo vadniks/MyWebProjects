@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            display: grid;
+            text-align: center;
+            height: 100%;
+            margin: 0;
+            position: fixed;
+        }
+        #cnt {
+            grid-row: 1;
+            grid-column: 1;
+        }
+        #img {
+            z-index: -1;
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 1;
+        }
+        @keyframes anm {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(0vh);
+            }
+        }
+        #bck, #ln {
+            position: fixed;
+            left: 0;
+            fill: darkslategrey;
+            opacity: 0.75;
+            height: 100vh;
+            animation-duration: 1s;
+            animation-name: anm;
+        }
+        #ln {
+            stroke: yellow;
+            stroke-width: 5px;
+            animation-duration: 1s;
+            animation-name: anm;
+        }
+        #hd {
+            width: fit-content;
+            font-family: 'Lato', sans-serif;
+            color: aquamarine;
+            position: fixed;
+            top: 55%;
+            left: 3%;
+            text-shadow: darkslategrey 0 0 1px, darkslategrey 0 0 1px, darkslategrey 0 0 1px, darkslategrey 0 0 1px, darkslategrey 0 0 1px, darkslategrey 0 0 1px;
+            animation-duration: 1s;
+            animation-name: anm;
+        }
+        #txt {
+            width: 40%;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Lato', sans-serif;
+            color: aquamarine;
+            position: fixed;
+            top: 65%;
+            left: 3%;
+            animation-duration: 1s;
+            animation-name: anm;
+        }
+        #crls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            position: fixed;
+            top: 90%;
+            left: 15%;
+            animation-duration: 1s;
+            animation-name: anm;
+        }
+        .crll {
+            fill: darkcyan;
+            margin: 5px;
+        }
+        .crll:hover {
+            fill: orange;
+        }
+    </style>
+    <script>
+        const
+            lg = 5,
+            els = Array(lg),
+            imgs = [
+                '../res/illyria-default.jpg',
+                '../res/illyria-default-lockscreen.jpg',
+                '../res/Wallpaper-ST2-Black.jpg',
+                '../res/Wallpaper-ST2-Blue.jpg',
+                '../res/Wallpaper-ST2-Green.jpg'
+            ],
+            clrs = ["cyan", "red", "blue", "grey", "green"]
+        let img, crls, cr = null, ln, hd, txt, bck
+
+        class hldr { constructor(a) { this.a = a } }
+
+        function anm(ii, idd, a, b, c, d, e, f) {
+            if (idd.a != null) return
+            idd.a = setInterval(() => {
+                if (a(ii.a)) {
+                    clearInterval(idd.a)
+                    idd.a = null
+                    ii.a = c
+                    if (e != null) e()
+                    return
+                }
+                f(ii.a)
+                ii.a = b(ii.a)
+            }, d)
+        }
+
+        function clk(e) {
+            cr.style.fill = 'darkcyan'
+            e.currentTarget.style.fill = 'cyan'
+            cr = e.currentTarget
+
+            let a = parseInt(cr.id.substring(3))
+
+            const ii = new hldr(1.0), idd = new hldr(null), log = 15, exp = 0.05
+            anm(ii, idd, (j) => j <= 0.0, (j) => j - exp, 0.0, log, () => {
+                img.src = imgs[a]
+                anm(ii, idd, (j) => j >= 1.0, (j) => j + exp, 1.0, log, null, j => img.style.opacity = j.toString())
+            }, j => img.style.opacity = j.toString())
+
+            const lmb = j => {
+                hd.style.transform = `translateY(${j}vh)`
+                txt.style.transform = `translateY(${j}vh)`
+                crls.style.transform = `translateY(${j}vh)`
+                bck.style.transform = `translateY(${j}vh)`
+                ln.style.transform = `translateY(${j}vh)`
+            }
+
+            const jj = new hldr(0), jdd = new hldr(null), en = 100, loge = 5
+            anm(jj, jdd, j => j >= en, j => j + 1, en, loge, () =>
+                anm(jj, jdd, j => j <= 0, j => j - 1, 0, loge, null, lmb),
+            lmb)
+
+            ln.style.stroke = clrs[a]
+            setTimeout(() => ln.style.stroke = 'yellow', 300)
+        }
+
+        window.onload = () => {
+            img = document.getElementById('img')
+            crls = document.getElementById('crls')
+            ln = document.getElementById('ln')
+            hd = document.getElementById('hd')
+            txt = document.getElementById('txt')
+            bck = document.getElementById('bck')
+
+            let a = cnt.querySelector('#crl')
+
+            for (let i = 0; i < lg; i++) {
+                if (i > 0) {
+                    a = a.cloneNode(true)
+                    a.id = `crl${i}`
+                    crls.append(a)
+                } else
+                    a.id = 'crl0'
+                a.addEventListener('click', clk)
+                els[i] = a
+            }
+
+            cr = cnt.querySelector('#crl0')
+            cr.style.fill = 'cyan'
+        }
+    </script>
+</head>
+<body>
+    <img id="img" src="../res/illyria-default.jpg" alt="">
+    <div id="cnt">
+        <svg id="bck" viewBox="0 0 850 600">
+            <polygon points="0,0 850,600 0,600"/>
+        </svg>
+        <svg id="ln" viewBox="0 0 850 600">
+            <line x1="0" y1="0" x2="850" y2="600"/>
+        </svg>
+        <h1 id="hd">LOREM IPSUM DOLOR</h1>
+        <h4 id="txt">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book.
+        </h4>
+        <div id="crls">
+            <svg class="crll" id="crl" width="20px" height="20px" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="25"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+
+#main {
+    text-align: center;
+}
+.lft {
+    float: left;
+    margin-right: 10px
+}
+#dvlf {
+    text-align: left;
+}
+#mnhdr {
+    margin-bottom: 3px;
+}
+.lfcnt {
+    float: left;
+    background-color: grey;
+    padding-right: 5px
+}
+.rgcnt {
+    float: right;
+    background-color: grey;
+    padding-left: 5px
+}
+div > section {
+    border-bottom: white solid;
+    border-top: white solid;
+    margin: 5px;
+    font-size: larger;
+    text-align: left;
+}
+div > article {
+    font-style: italic;
+}
+a:hover {
+    background-color: dimgrey;
+}
+a:visited {
+    color: lightblue;
+}
+a:link {
+    color: blue;
+}

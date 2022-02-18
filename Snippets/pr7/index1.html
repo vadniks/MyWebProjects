@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .img {
+            width: 100px;
+            height: 75px;
+        }
+        .imp {
+            font-size: xx-large;
+        }
+        .pwr {
+            vertical-align: super;
+        }
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        #dsc {
+            width: 85%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 5px;
+        }
+        #oth {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #wk {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #wkd {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: solid 10px grey;
+        }
+        #wkg {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #wkn {
+            width: 100px;
+        }
+        #wkg {
+            width: 70px;
+        }
+        @media (max-width: 900px) {
+            #wk {
+                flex-direction: column;
+            }
+            #wkd {
+                flex-direction: row;
+                border: none;
+                border-top: solid 3px grey;
+            }
+        }
+        @media (max-width: 600px) {
+            #wkg {
+                flex-direction: column;
+                justify-content: normal;
+            }
+        }
+        @media (max-width: 500px) {
+            .imp {
+                font-size: large;
+            }
+            .txt {
+                font-size: small;
+            }
+        }
+    </style>
+    <script>
+        let wds = new Array(7)
+        let cts = ["New York, NY", "Washington, WS", "Los Angeles, LA", "Las Vegas, LV"]
+        let ds = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        let wk
+
+        window.onload = function() {
+            { let a = Math.floor(Math.random() * 4 + 1)
+              document.getElementById("cty").textContent = cts[a === 4 ? 0 : a] }
+
+            { let a = document.getElementById("_pw2").cloneNode(true)
+              a.style.visibility = "visible"
+              let b = document.getElementById("dgr")
+              b.textContent = Math.floor(Math.random() * 100).toString()
+              b.append(a) }
+
+            wk = document.getElementById("wk")
+            wds[0] = document.getElementById("wkd")
+
+            let b = Math.floor(Math.random() * (7 - 1 + 1) + 1)
+            if (b === 7) b = 0
+
+            for (let i = 1; i < wds.length; i++) {
+                let a = wds[0].cloneNode(true)
+
+                let c = b + i - 1
+                if (c >= ds.length) c -= ds.length
+
+                a.querySelector("#wkn").textContent = ds[c]
+
+                let d = a.querySelector("#dg1")
+                d.textContent = Math.floor(Math.random() * 10).toString()
+
+                let e = a.querySelector("#dg2")
+                e.textContent = Math.floor(Math.random() * 10).toString()
+
+                let f = document.getElementById("_pw")
+                f = f.cloneNode(true)
+                f.style.visibility = "visible"
+                d.append(f)
+                f = f.cloneNode(true)
+                f.style.visibility = "visible"
+                e.append(f)
+
+                wds[i] = a
+                wk.append(a)
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="main">
+        <span class="imp" id="cty">New York, NY</span>
+        <span class="txt" id="dt">Tuesday, April 15th</span>
+        <span class="txt" id="wth">Overcast</span>
+        <div id="dsc">
+            <div id="wt">
+                <img class="img" id="wim" src="../res/clouds.jpg">
+                <span class="imp" id="dgr">58<span class="pwr" style="font-size: medium">&#176;F</span></span>
+            </div>
+            <div id="oth">
+                <span class="txt" id="prc">Precipitation: 100%</span>
+                <span class="txt" id="hmd">Humidity: 97%</span>
+                <span class="txt" id="wnd">Wind: 4 mph SW</span>
+                <span class="txt" id="pnl">Pollen Count: 36</span>
+            </div>
+        </div>
+        <div id="wk">
+            <div id="wkd">
+                <span class="txt" id="wkn">Today</span>
+                <img class="img" id="wki" src="../res/clouds.jpg">
+                <div id="wkg">
+                    <span class="txt" id="dg1">68<span class="pwr">&#176;</span></span>
+                    <span class="txt" id="dg2">36<span class="pwr">&#176;</span></span>
+                </div>
+                <span class="txt" id="wkp">Pollen 36</span>
+            </div>
+        </div>
+    </div>
+    <span class="pwr" id="_pw" style="visibility: collapse">&#176;</span>
+    <span class="pwr" id="_pw2" style="visibility: collapse; font-size: medium">&#176;F</span>
+</body>
+</html>

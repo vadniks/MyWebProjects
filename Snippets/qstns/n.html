@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img
+         src="../res/noise.jpg"
+         style="
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            object-fit: contain">
+    <canvas
+        style="
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            position: absolute;
+            left: 0">
+    </canvas>
+    <script>
+        const a = document.querySelector('canvas'),
+            b = a.getContext('2d')
+
+        let c = 'a', d = ''
+        for (let i = 0; i < 33; i++)
+            c += String.fromCharCode(c.charCodeAt(0) + i)
+        for (let i = 0; i < 6; i++)
+            d += c[Math.floor(Math.random() * 33)]
+
+        b.font = "30px Arial"
+        b.fillText(d, 75, 75)
+    </script>
+</body>
+</html>

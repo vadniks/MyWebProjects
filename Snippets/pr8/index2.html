@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #bck {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            /*background-image: linear-gradient(to right top, orange 0, purple 100%);*/
+            background-image:
+                    linear-gradient(to top, transparent, red),
+                    linear-gradient(to right, orange, yellow, green, blue, violet, orange);
+            background-size: 100% 100%, 2000% 100%;
+            animation: mv 20s infinite;
+        }
+        @keyframes mv {
+            from {background-position: center center, left center; }
+            to {background-position: center center, right center; }
+        }
+        #cnt {
+            position: fixed;
+            top: 50%;
+            bottom: 50%;
+            left: 10%;
+            right: 10%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #crd {
+            z-index: 0;
+            background-image: linear-gradient(to left bottom, orange 0, purple 100%);
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid yellow;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        #chd {
+            display: grid;
+            margin-bottom: 10px;
+        }
+        #shp {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        #nbr {
+            grid-column: 1;
+            grid-row: 1;
+            position: relative;
+            align-self: center;
+            text-align: center;
+            font-size: x-large;
+            text-shadow: #000 0 0 1px, #000 0 0 1px, #000 0 0 1px, #000 0 0 1px, #000 0 0 1px, #000 0 0 1px;
+        }
+        #txt {
+            margin-bottom: 10px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+        #crd:hover {
+            z-index: 2;
+            border: 4px solid green;
+            transform: scale(1.25, 1.25);
+        }
+    </style>
+    <script>
+        const ln = 3
+        let crds = Array()
+        let cnt
+        const clrs = [null, "grey", "red", "blue", "yellow", "green", "orange"]
+
+        function hvr(a, b) {
+            for (let i = 0; i < ln; i++)
+                crds[i].style.filter = a ? "blur(10px)" : ""
+            if (a)
+                b.target.style.filter = ""
+        }
+
+        window.onload = function () {
+            cnt = document.getElementById('cnt')
+            let a = cnt.querySelector('#crd')
+
+            for (let i = 0; i < ln; i++) {
+                let b = i > 0 ? a.cloneNode(true) : a;
+                b.querySelector('#nbr').textContent = "0" + (i + 1).toString()
+                b.querySelector('#shp').style.fill = clrs[Math.floor(Math.random() * 6)]
+
+                b.addEventListener('mouseenter', e => hvr(true, e))
+                b.addEventListener('mouseleave', e => hvr(false, e))
+
+                if (i > 0)
+                    cnt.append(b)
+                crds.push(b)
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="bck"></div>
+        <div id="cnt">
+        <div id="crd">
+            <div id="chd">
+                <svg id="shp" width="200px" height="100px" viewBox="0 0 200 100">
+                    <g transform="rotate(180, 100, 100) translate(0, 100)">
+                        <path d="M 0 100 A 100 100 0 0 1 200 100 L 0 100 Z"/>
+                    </g>
+                </svg>
+                <span id="nbr">01</span>
+            </div>
+            <div id="txt">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </div>
+            <button id="bt">Learn more</button>
+        </div>
+    </div>
+</body>
+</html>

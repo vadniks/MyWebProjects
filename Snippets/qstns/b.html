@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #b {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="a">Switch</button>
+    <div id="b"></div>
+    <script>
+        const a = document.getElementById('a'), // button
+              b = document.getElementById('b') // block
+        let c = false // flag
+
+        a.addEventListener('click', () => {
+            b.style.visibility = c ? 'visible' : 'hidden'
+            c = !c
+        })
+    </script>
+</body>
+</html>

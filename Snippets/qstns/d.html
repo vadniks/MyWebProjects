@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        :root {
+            --width: 100px;
+            --height: var(--width);
+            --pos: absolute;
+        }
+        #a {
+            width: var(--width);
+            height: var(--height);
+            background-color: red;
+            position: var(--pos);
+            top: 0;
+            left: 0;
+        }
+        #b {
+            width: var(--width);
+            height: var(--height);
+            background-color: blue;
+            position: var(--pos);
+            top: 50px
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="a"></div>
+    <div id="b"></div>
+</body>
+</html>

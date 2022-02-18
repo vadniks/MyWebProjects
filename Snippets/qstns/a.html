@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #a { /*container*/
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #b { /*element template*/
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="a">
+        <div id="b"></div>
+    </div>
+    <script>
+        const a = document.getElementById('a'); let b
+        for (let i = 0; i < 7; i++) {
+            b = i > 0 ? b.cloneNode(true) : a.querySelector('div')
+
+            const c = (Math.random() * 100).toString() + 'px'
+            b.style.width = b.style.height = c
+            b.style.backgroundColor = b.style.backgroundColor = 'red'
+
+            i > 0 ? a.append(b) : undefined
+        }
+    </script>
+</body>
+</html>

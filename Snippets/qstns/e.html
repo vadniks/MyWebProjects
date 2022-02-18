@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>__NAME__OR_SMTH_</h1>
+    <canvas id="cns" width="200px" height="200px"></canvas>
+    <script>
+        const cns = document.getElementById('cns'),
+              ctx = cns.getContext('2d')
+
+        ctx.beginPath()
+        ctx.arc(50, 50, 40, 0, 2 * Math.PI)
+        ctx.fill()
+        ctx.closePath()
+        ctx.font = "30px Arial"
+        ctx.fillText("_NAME__", 0, 125)
+    </script>
+</body>
+</html>

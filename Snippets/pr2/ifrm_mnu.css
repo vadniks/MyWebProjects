@@ -1,0 +1,12 @@
+.mnu {
+    overflow: auto;
+}
+.mnu a {
+    background-color: lightgrey;
+    color: black;
+    display: block;
+    text-decoration: none;
+}
+.mnu a:hover {
+    background-color: grey;
+}

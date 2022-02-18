@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --cptwd: 50vh;
+            --cpthg: 10vh;
+        }
+        body {
+            background: #0b2d3a;
+            text-align: center;
+        }
+        #cptbk {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 60vh;
+            height: 25vh;
+            background: #1c5d87;
+            border-radius: 2vh;
+        }
+        #ttl {
+            font-family: 'Arial', sans-serif;
+            font-size: 5vmin;
+            font-weight: bold;
+            color: #6eabff;
+        }
+        #cpt {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: var(--cpthg);
+            margin: 1vh;
+        }
+        #tx {
+            position: relative;
+            align-items: center;
+            width: var(--cptwd);
+            height: var(--cpthg);
+            margin-right: 1vh;
+        }
+        #ns {
+            width: var(--cptwd);
+            height: var(--cpthg);
+            border-radius: 1vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #txt {
+            font-family: 'Arial', sans-serif;
+            font-size: 5vmin;
+            position: absolute;
+            top: 2vh;
+            left: 0;
+            width: 100%;
+            color: darkslategrey;
+        }
+        #upd {
+            width: 8vh;
+            height: 8vh;
+            background: #78aaff;
+            border-radius: 1vh;
+        }
+        #upd:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        #upd:active {
+            background: yellow;
+        }
+        #inp {
+            margin: 0 0 1vh;
+            width: var(--cptwd);
+            height: 5vh;
+            align-self: center;
+            font-size: 4vmin;
+            border-radius: 1vh;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            const
+                txt = document.getElementById('txt'),
+                inp = document.getElementById('inp'),
+                upd = document.getElementById('upd'),
+                a = 'a',
+                lg = 25,
+                ln = 10
+
+            let alp = String()
+            for (let i = 1; i <= lg; i++)
+                alp += String.fromCharCode(a.charCodeAt(0) + i)
+
+            let str
+            let b  = () => {
+                str = String()
+                for (let i = 0; i < ln; i++)
+                    str += alp[Math.floor(Math.random() * ln)]
+                txt.textContent = str
+            }
+            b()
+
+            upd.addEventListener('click', () => b())
+
+            inp.addEventListener('keyup', e => {
+                if (e.key !== 'Enter')
+                    return
+                e.preventDefault()
+
+                if (inp.value !== str) {
+                    inp.style.border = '5px solid red'
+                    setTimeout(() => inp.style.border = '', 3000)
+                } else {
+                    inp.style.border = '5px solid green'
+                    setTimeout(() => inp.style.border = '', 3000)
+                    b()
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="cptbk">
+        <span id="ttl">Captcha in JS</span>
+        <div id="cpt">
+            <div id="tx">
+                <img id="ns" src="../res/noise.jpg">
+                <span id="txt">Text</span>
+            </div>
+            <svg id="upd" viewBox="-2 -1 30 30">
+                <g>
+                    <path d="M23.92,14.746l-4.05-4.051h2.374l-0.068-0.177c-1.407-3.561-4.882-6.088-8.95-6.088c-5.312,0-9.62,4.307-9.62,9.616    c0,5.316,4.308,9.623,9.62,9.623c3.907,0,7.271-2.128,8.775-5.479l3.854,0.039c-0.013,0.03-3.032,8.918-12.693,8.918    C5.893,27.148,0,21.254,0,13.987C0,6.715,5.893,0.824,13.161,0.824c6.08,0,11.195,4.116,12.709,9.715l0.032,0.156h2.069    L23.92,14.746z"/>
+                </g>
+            </svg>
+        </div>
+        <input id="inp" type="text">
+    </div>
+</body>
+</html>

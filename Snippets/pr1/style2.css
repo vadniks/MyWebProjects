@@ -1,0 +1,19 @@
+body{
+    background-color: cadetblue;
+}
+p{
+    color: blueviolet;
+    position: center;
+}
+h1{
+    font-style: italic;
+}
+h2{
+    font-weight: bold;
+}
+button{
+    background-color: coral;
+}
+table{
+    position: center;
+}

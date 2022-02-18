@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table id="tbl">
+        <tr>
+            <th>__TEMPLATE__</th>
+        </tr>
+    </table>
+    <button id="bt">Sort</button>
+    <script>
+        // initialization
+        const tbl = document.getElementById('tbl'),
+              ln = 5,
+              bt = document.getElementById('bt')
+        let tr = tbl.querySelector('tr'),
+            th = tr.querySelector('th')
+
+        // generate and fill the table
+        for (let i = 0; i < ln; i++) {
+            tr = i > 0 ? tr.cloneNode(false) : tr
+
+            for (let j = 0; j < ln; j++) {
+                th = j > 0 || i > 0 ? th.cloneNode(true) : th
+                th.textContent = Math.floor(Math.random() * 100).toString()
+                j > 0 || i > 0 ? tr.append(th) : undefined // noinspect
+            }
+
+            i > 0 ? tbl.append(tr) : undefined // noinspect
+            tr = tbl.querySelector('tr')
+            th = tr.querySelector('th')
+        }
+
+        // sorting
+        function srt(ar, ac) {
+            for(let i = 0; i < ar.length; i++){
+                for(let j = 0; j < ( ar.length - i -1 ); j++){
+                    if(ac(ar[j], ar[j+1])){
+                        const temp = ar[j];
+                        ar[j] = ar[j + 1]
+                        ar[j+1] = temp
+                    }
+                }
+            }
+        }
+
+        // button event handling
+        bt.addEventListener('click', () => {
+            let rs = tbl.querySelectorAll('tr') // querying rows
+            for (let i = 0; i < ln; i++) {
+
+                const cs = rs[i].querySelectorAll('th') // querying next row's cells
+                let ns = new Array(ln) // creating buffer array for storing cells' numbers
+
+                // converting each cell to number
+                for (let j = 0; j < ln; j++)
+                    ns[j] = parseInt(cs[j].textContent)
+
+                // sorting them
+                srt(ns, (a, b) => a > b)
+
+                // setting sorted cells to each row
+                for (let j = 0; j < ln; j++)
+                    cs[j].textContent = ns[j]
+            }
+        })
+    </script>
+</body>
+</html>

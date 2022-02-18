@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .lft {
+      background-color: yellow;
+      grid-area: lf;
+      margin: 2px;
+    }
+    .rgt {
+      background-color: blue;
+      grid-area: rg;
+      margin: 2px;
+    }
+    #cnt1 {
+      display: grid;
+      grid-template-areas:'lf rg';
+      align-content: center;
+    }
+    .cntd {
+      background-color: grey;
+      margin: 3px;
+      text-align: center;
+    }
+    #dva { grid-area: a; }
+    #dvb { grid-area: b; }
+    #dvc { grid-area: c; }
+    #dvd { grid-area: d; }
+    #dve { grid-area: e; }
+    #cnt2 {
+      display: grid;
+      grid-template-areas:
+                'a a a'
+                'b b e'
+                'c d e';
+    }
+    #hdr { grid-area: h; }
+    #sdb { grid-area: s; }
+    #nav { grid-area: n; }
+    #mna { grid-area: m; }
+    #ads { grid-area: a; }
+    #ftr { grid-area: f; }
+    #cnt3 {
+      display: grid;
+      grid-template-areas:
+                'h h h'
+                's n a'
+                's m a'
+                'f f f';
+    }
+    .cntf {
+      background-color: lightcoral;
+      margin: 3px;
+      text-align: center;
+    }
+    .cntl {
+      background-color: darkslategrey;
+      margin: 3px;
+      text-align: center;
+    }
+    #cnt4 {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    #dfa { order: 0; flex: 100% }
+    #dfb { order: 0; flex: 66% }
+    #dfe { order: 1; flex: 33% }
+    #dfc { order: 0; flex: 33% }
+    #dfd { order: 1; flex: 66% }
+    #cnt5 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    #cnt5_1 {
+      order: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    #cnt5_2 {
+      order: 2;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    @media (max-width: 600px) {
+      #cnt1 { grid-template-areas: 'lf' 'rg'; }
+      #cnt2 {
+        grid-template-areas:
+                    'a a'
+                    'b b'
+                    'c d'
+                    'e e';
+      }
+      #cnt3 {
+        grid-template-areas:
+                    'h h h'
+                    'n n n'
+                    'm m m'
+                    's s s'
+                    'a a a'
+                    'f f f';
+      }
+      #cnt4 { flex-direction: column; }
+      #cnt5_1 { flex-direction: column; }
+      #dfc { flex: 50%; }
+      #dfd { flex: 50%; }
+      /*#cnt6_2 { display: none; }
+      #cnt6_1 { display: inline; }*/
+    }
+    @media (min-width: 601px) and (max-width: 1000px) {
+      #cnt3 {
+        grid-template-areas:
+                    'h h h'
+                    'n n n'
+                    's m m'
+                    'a f f';
+      }
+    }
+    a, #lgo {
+      margin: 3px;
+      font-size: x-large;
+      text-decoration: none;
+    }
+    a:hover { background-color: #262625; }
+    #cnt6 {
+      background-color: darkslategrey;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    #lgo {
+      background-color: lightcoral;
+      display: inline;
+    }
+    /*@media (min-width: 601px) {
+        #cnt6_3 {
+            display: inline;
+            background-color: yellow;
+        }
+        #cnt6_1 {
+            background-color: blue;
+            display: none;
+        }
+        #cnt6_2 {
+            display: flex;
+            flex-direction: row;
+            background-color: aqua;
+        }
+    }*/
+    #cnt6_3 { text-align: end; }
+  </style>
+  <script>
+    const nn = 'none'
+    const fl = 'flex'
+    const nl = 'inline'
+    const rw = 'row'
+    const cl = 'column'
+    const ni = 'initial'
+
+    let c6_1
+    let c6_2
+    let exp
+    let cls
+    let c7
+    let imbl = false
+    let clp = true
+
+    function int() {
+      c6_1 = document.getElementById('cnt6_1')
+      c6_2 = document.getElementById('cnt6_2')
+      exp = document.getElementById('exp')
+      cls = document.getElementById('cls')
+      c7 = document.getElementById('cnt7')
+    }
+
+    function mbl() {
+      return (window.innerWidth
+              || document.documentElement.clientWidth
+              || document.body.clientWidth) <= 600
+    }
+
+    function srt(a, b) { if (typeof a !== typeof b) throw 0x1 }
+    function ds(a, b) { a.style.display = b }
+    function dr(a, b) { a.style.flexDirection = b }
+
+    function rsz(ldo) {
+      srt(ldo, false)
+
+      if (ldo) {
+        if (!imbl) {
+          ds(c6_1, nn)
+          ds(c6_2, fl)
+          dr(c6_2, rw)
+        } else {
+          ds(cls, nn)
+          ds(c6_1, nl)
+          ds(c6_2, nn)
+          ds(c7, nn)
+        }
+        return
+      }
+
+      if (imbl) {
+        ds(c6_2, nn)
+        ds(c6_1, nl)
+
+        ds(exp, clp ? nl : nn)
+        ds(cls, clp ? nn : nl)
+        ds(c7, clp ? ni : nn)
+      } else {
+        clp = true
+
+        ds(c6_2, fl)
+        dr(c6_2, rw)
+        ds(c6_1, nn)
+
+        ds(c7, ni)
+      }
+    }
+
+    window.onload = function () {
+      int()
+      imbl = mbl()
+      rsz(true)
+
+      exp.onclick = function () {
+        clp = false
+
+        ds(exp, nn)
+        ds(cls, ni)
+
+        ds(c7, nn)
+        ds(c6_2, fl)
+        dr(c6_2, cl)
+
+        return false
+      }
+
+      cls.onclick = function () {
+        clp = true
+
+        ds(cls, nn)
+        ds(exp, ni)
+
+        ds(c7, ni)
+        ds(c6_2, nn)
+        ds(c6_1, nl)
+
+        return false
+      }
+    }
+
+    window.onresize = function () {
+      imbl = mbl()
+      rsz(false)
+    }
+  </script>
+</head>
+<body>
+  <h1>Section 1.1</h1>
+  <div id="cnt1">
+    <div class="lft">
+      <h2>The left section</h2>
+    </div>
+    <div class="rgt">
+      <h2>The right section</h2>
+    </div>
+  </div>
+  <h1>Section 1.2</h1>
+  <div id="cnt2">
+    <div class="cntd" id="dva">
+      <h2>A</h2>
+    </div>
+    <div class="cntd" id="dvb">
+      <h2>B</h2>
+    </div>
+    <div class="cntd" id="dvc">
+      <h2>C</h2>
+    </div>
+    <div class="cntd" id="dvd">
+      <h2>D</h2>
+    </div>
+    <div class="cntd" id="dve">
+      <h2>E</h2>
+    </div>
+  </div>
+  <h1>Section 1.3</h1>
+  <div id="cnt3">
+    <div class="cntd" id="hdr">
+      <h2>Header</h2>
+    </div>
+    <div class="cntd" id="sdb">
+      <h2>Sidebar</h2>
+    </div>
+    <div class="cntd" id="nav">
+      <h2>Navigation</h2>
+    </div>
+    <div class="cntd" id="ads">
+      <h2>Ads</h2>
+    </div>
+    <div class="cntd" id="mna">
+      <h2>Main</h2>
+    </div>
+    <div class="cntd" id="ftr">
+      <h2>Footer</h2>
+    </div>
+  </div>
+  <h1>Section 2.1</h1>
+  <div id="cnt4">
+    <div class="cntf" id="hmo">
+      <h2>Home</h2>
+    </div>
+    <div class="cntf" id="abt">
+      <h2>About</h2>
+    </div>
+    <div class="cntf" id="srv">
+      <h2>Services</h2>
+    </div>
+    <div class="cntf" id="cnc">
+      <h2>Contacts</h2>
+    </div>
+  </div>
+  <h1>Section 2.2</h1>
+  <div id="cnt5">
+    <div class="cntf" id="dfa">
+      <h2>A</h2>
+    </div>
+    <div id="cnt5_1">
+      <div class="cntf" id="dfb">
+        <h2>B</h2>
+      </div>
+      <div class="cntf" id="dfe">
+        <h2>E</h2>
+      </div>
+    </div>
+    <div id="cnt5_2">
+      <div class="cntf" id="dfc">
+        <h2>C</h2>
+      </div>
+      <div class="cntf" id="dfd">
+        <h2>D</h2>
+      </div>
+    </div>
+  </div>
+  <h1>Section 2.3</h1>
+  <div id="cnt6">
+    <div id="lgo">Logo</div>
+    <div id="cnt6_3">
+      <div id="cnt6_1">
+        <a class="cntl" href="#" id="exp">&#9776;</a>
+        <a class="cntl" href="#" id="cls">&#9747;</a>
+      </div>
+      <div id="cnt6_2">
+        <a class="cntl" id="hmo2" href="#">Home</a>
+        <a class="cntl" id="abt2" href="#">About</a>
+        <a class="cntl" id="srv2" href="#">Services</a>
+        <a class="cntl" id="cnc2" href="#">Contacts</a>
+      </div>
+    </div>
+  </div>
+  <div id="cnt7">
+    <h3>Content...</h3>
+  </div>
+</body>
+</html>
