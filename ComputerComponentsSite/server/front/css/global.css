@@ -1,0 +1,191 @@
+body {
+    background: #202324;
+    margin: 0;
+    min-height: 100vh;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+* {
+    box-sizing: border-box;
+}
+#template {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    height: 100%;
+    min-height: 100vh;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+span, label {
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+#header {
+    background-color: rgb(0, 14, 20);
+}
+#logo {
+    margin: 10px;
+    width: fit-content;
+    display: grid;
+    grid-template-areas:
+        'logoPic logoName logoName'
+        'logoPic logoSubName logoSubName'
+        'logoPic slgn slgn';
+}
+#logoPic {
+    grid-area: logoPic;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background-image: radial-gradient(grey, transparent);
+    background-size: 100%;
+    border: 1px solid transparent;
+}
+#logoNm {
+    grid-area: logoName;
+    font-size: 24px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+#logoSubNm {
+    grid-area: logoSubName;
+    margin-left: 5px;
+}
+#slgn {
+    grid-area: slgn;
+    margin-left: 5px;
+    font-style: italic;
+}
+#menu {
+    border-top: 1px solid grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+}
+#menuLf {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#menuRg {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+button {
+    margin: 5px;
+    background-color: rgb(0, 86, 179);
+    display: inline-block;
+    color: cyan;
+    border: none;
+    font-size: large;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+}
+button:hover {
+    cursor: pointer;
+    background-color: seagreen;
+}
+button:active {
+    background-color: lawngreen;
+}
+#content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 90%;
+    overflow: hidden;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 20px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5%;
+}
+#footer {
+    width: 100%;
+    background-color: rgb(0, 14, 20);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+#overlay {
+    position: fixed;
+    display: none;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    opacity: 0.7;
+    background: black;
+}
+@media only screen and (min-width: 1500px) {
+    span, button {
+        font-size: 2vh;
+    }
+    button {
+        padding: 0.5vh;
+    }
+    #logoPic {
+        width: 10vh;
+        height: 10vh;
+    }
+    #logoNm {
+        font-size: 3vh;
+    }
+}
+@media only screen and (max-width: 950px) {
+    #logo {
+        grid-template-areas:
+        'logoPic logoName logoName'
+        'logoPic logoSubName logoSubName';
+    }
+    #logoPic {
+        width: 40px;
+        height: 40px;
+    }
+    #logoNm {
+        font-size: large;
+    }
+    #logoSubNm {
+        font-size: smaller;
+    }
+    #slgn {
+        display: none;
+    }
+    button {
+        font-size: medium;
+        padding: 2px;
+    }
+    #content {
+        width: 98%;
+        margin: 1%;
+    }
+    #footer {
+        padding: 10px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #logoNm {
+        font-size: medium;
+    }
+    #logoSubNm {
+        font-size: small;
+    }
+    #slgn {
+        display: none;
+    }
+    button {
+        font-size: medium;
+        padding: 2px;
+    }
+}

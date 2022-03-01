@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  server:
+    build: server/
+    command: node ./server.js
+    ports:
+      - 8080:8080
