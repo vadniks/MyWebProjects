@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+service UserService {
+    rpc GetAll(Empty) returns (UserList) {}
+    rpc Get(UserId) returns (User) {}
+    rpc Insert(User) returns (Empty) {}
+    rpc Update(User) returns (Empty) {}
+    rpc Remove(UserId) returns (Empty) {}
+    rpc Greetings(UserCredentials) returns (Username) {}
+}
+
+message Empty {}
+
+message UserId {
+    int32 id = 1;
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string password = 3;
+}
+
+message UserList {
+    repeated User users = 1;
+}
+
+message UserCredentials {
+    string name = 1;
+    string password = 2;
+}
+
+message Username {
+    string name = 1;
+}

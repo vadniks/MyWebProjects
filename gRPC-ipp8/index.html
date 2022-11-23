@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--suppress HtmlFormInputWithoutLabel -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <input placeholder="id">
+        <input placeholder="name">
+        <input placeholder="password">
+        <button onclick="create()">create</button>
+        <button onclick="read()">read</button>
+        <button onclick="update()">update</button>
+        <button onclick="delete_()">delete</button>
+        <button onclick="greet()">greet</button>
+        <div></div>
+        <script>
+            const div = document.querySelector('div'),
+                fields = document.querySelectorAll('input')
+            
+            function request(method, which, payload, callback, sendJson) {
+                const rq = new XMLHttpRequest()
+                rq.open(method, which, false)
+                if (sendJson) rq.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+                rq.send(payload)
+                if (callback) callback(rq.response)
+            }
+            
+            function create() { request('POST', '/save', JSON.stringify({
+                name: fields[1].value,
+                password: fields[2].value
+            }), null, true) }
+
+            function read() { div.innerHTML = ''; request('GET', '/', null, response => JSON.parse(response).results.forEach(user => {
+                const p = document.createElement('p')
+                p.textContent = `${user.id} ${user.name} ${user.password}`
+                div.appendChild(p)
+            }), false) }
+
+            function update() { request('POST', '/update', JSON.stringify({
+                id: parseInt(fields[0].value),
+                name: fields[1].value,
+                password: fields[2].value
+            }), null, true) }
+
+            function delete_() { request('POST', '/remove', JSON.stringify({ id: parseInt(fields[0].value) }), null, true) }
+
+            function greet() { request('POST', '/greetings', JSON.stringify({
+                name: fields[1].value,
+                password: fields[2].value
+            }), response => alert(response), true) }
+        </script>
+    </body>
+</html>
